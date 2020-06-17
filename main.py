@@ -2,36 +2,40 @@ import requests  # Import requests
 
 
 class UserFunctions:
-    def GetDescription(userId):
-        url = 'https://api.brick-hill.com/v1/user/profile?id=' + userId
+    def GatherFullInfo(userId):
+        url = 'https://api.brick-hill.com/v1/user/profile?id='+str(userId)
         resp = requests.get(url=url)
         data = resp.json()
-        return data[0]["description"]
-
-    def GetUsername(userId):
-        url = 'https://api.brick-hill.com/v1/user/profile?id=' + userId
+        print("Brick Hill Info Gathering System\nUsername: "+data["username"] + "\nLast Seen: " +data["last_online"]+"\nAccount Created at the date of "+data["created_at"]+"\nStatus: "+ data["status"][0]["body"]) 
+    def GatherInfo(userId, Filter):
+        url = 'https://api.brick-hill.com/v1/user/profile?id='+str(userId)
         resp = requests.get(url=url)
         data = resp.json()
-        return data[0]["username"]
-
+        if Filter == "username":
+            return data["username"]
+        if Filter == "description":
+            return data["description"]
+        if Filter =="last_online":
+            return data["last_online"]
+        
     def ToId(username):
         url = 'https://api.brick-hill.com/v1/user/id?username=' + username
         resp = requests.get(url=url)
         data = resp.json()
-        return data[0]["id"]
+        print("User "+username+" Id is: ")
+        return data["id"]
 
 
 class ShopFunctions:
     def GetLatestItem(ItemType, DetailType):
-        url = "https://www.brick-hill.com/api/shop/main/" + ItemType + "/updated/1/?page_size=1&bot_friendly"
+        url = "https://www.brick-hill.com/api/shop/main/" +  ItemType + "/updated/1/?page_size=1&bot_friendly"
         resp = requests.get(url=url)
         data = resp.json()
         # AHAHAH
         if DetailType == "name":
             return data[0]["name"]
         if DetailType == "bits":
-            if data[0][
-                    "bits"] == -1:  #data[0] returns raw data instead of Json one.
+            if data[0]["bits"] == -1:  #data[0] returns raw data instead of Json one.
                 return "Not for sale with bits."
             else:
                 return data[0]["bits"]
@@ -45,17 +49,13 @@ class ShopFunctions:
             else:
                 print("Item is not sold out")
 
-
 # TypeError: list indices must be integers or slices, not str Fixed
-
-
 class ClanFunctions:
     def GetClanInfo(ClanId, Filter):
         RealID = str(ClanId)
         url = 'https://api.brick-hill.com/v1/clan/clan?id=' + RealID
         resp = requests.get(url=url)
         data = resp.json()
-
         if Filter == "name":
             return data[0]["name"]
         if Filter == "id":
@@ -64,3 +64,14 @@ class ClanFunctions:
             return data[0]["tag"]
         if Filter == "title":
             return data["title"]
+
+
+
+
+
+
+
+
+
+
+        #<a
