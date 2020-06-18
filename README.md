@@ -4,25 +4,21 @@ API Wrapper for Brick hill made on python.
 
 Requirements:
 ```
-pip
+poetry
 
 requests
 ```
 
 To install the requirements run:
 ```
-python -m pip install -r requirements.txt
+python3 -m poetry init --no-interaction
 ```
-(It will automatically install them using PIP)
+`python3 -m poetry add requests`
 
-If you dont have pip, run these commands to install them (UNIX TERMINAL)
+And that's it.
 
-`wget https://bootstrap.pypa.io/get-pip.py`
-or go to this website and download the script:
-https://bootstrap.pypa.io/get-pip.py
+----
 
-Then run python3 get-pip.py
-
-Once installed follow the steps above.
+Made by Edge, original idea by Deweystuff
 
 
