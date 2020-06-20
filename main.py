@@ -30,7 +30,22 @@ class ShopFunctions:
         url = "https://api.brick-hill.com/v1/shop/item?id="+ItemID
         resp = requests.get(url=url)
         data = resp.json()
-        return data[0][Filter]
+        if Filter == "name":
+            return data[0]["name"]
+        if Filter == "bits":
+            if data[0]["bits"] == -1:  #data[0] returns raw data instead of Json one.
+                return "Not for sale with bits."
+            else:
+                return data[0]["bits"]
+        if Filter == "bucks":
+            return data["bucks"]
+        if Filter == "id":
+            return data[0]["id"]
+        if Filter == "sold_out" or "sold out":
+            if data[0]["sold_out"] == True:
+                print("Item is sold out")
+            else:
+                print("Item is not sold out")
         
         
     def GetLatestItem(ItemType, DetailType):
