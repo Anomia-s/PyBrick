@@ -22,11 +22,17 @@ class UserFunctions:
         url = 'https://api.brick-hill.com/v1/user/id?username=' + username
         resp = requests.get(url=url)
         data = resp.json()
-        print("User "+username+" Id is: ")
         return data["id"]
 
 
 class ShopFunctions:
+    def GetShirtBuckss(ItemID):
+        url = "https://api.brick-hill.com/v1/shop/item?id="+ItemID
+        resp = requests.get(url=url)
+        data = resp.json()
+        return data[0]["bucks"]
+        
+        
     def GetLatestItem(ItemType, DetailType):
         url = "https://www.brick-hill.com/api/shop/main/" +  ItemType + "/updated/1/?page_size=1&bot_friendly"
         resp = requests.get(url=url)
