@@ -26,11 +26,11 @@ class UserFunctions:
 
 
 class ShopFunctions:
-    def GetShirtBuckss(ItemID):
+    def GetItemInfo(ItemID, Filter):
         url = "https://api.brick-hill.com/v1/shop/item?id="+ItemID
         resp = requests.get(url=url)
         data = resp.json()
-        return data[0]["bucks"]
+        return data[0][Filter]
         
         
     def GetLatestItem(ItemType, DetailType):
