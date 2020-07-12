@@ -18,7 +18,22 @@ python3 -m pip install requests
 And that's it.
 
 ----
+# Documentation.
 
+**User Functions**:
+
+```py
+GatherFullInfo(userId)
+```
+
+```py
+GatherInfo(userId, Filter)
+```
+Filters:
+
+- Username
+- Description
+- last_online
 Made by Edge, original idea by Deweystuff
 
 
