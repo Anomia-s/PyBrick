@@ -11,11 +11,11 @@ class UserFunctions:
         url = 'https://api.brick-hill.com/v1/user/profile?id='+str(userId)
         resp = requests.get(url=url)
         data = resp.json()
-        if Filter == "username":
+        if Filter == "username" or "Username":
             return data["username"]
-        if Filter == "description":
+        if Filter == "description" or "blurb" or "Description":
             return data["description"]
-        if Filter =="last_online":
+        if Filter =="last_online" or "Last Online" or "Last online" or "last online":
             return data["last_online"]
         
     def ToId(username):
@@ -85,6 +85,8 @@ class ClanFunctions:
             return data[0]["tag"]
         if Filter == "title":
             return data["title"]
+        if Filter == "all":
+            return data["title"],data["tag"],data["id"]
 
 
 
